@@ -1,0 +1,2 @@
+rootProject.name='SOPT_2nd_Semina_Task'
+include ':app'
