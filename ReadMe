@@ -2,7 +2,9 @@
 안드로이드 앱에서 컨텐츠 전환 및 탐색을 위한 Navigation menu는 여러가지 방식으로 구현할 수 있다.
 1. Drawer Navigation : 앱 상단의 버튼을 클릭하여 왼쪽 ->오른쪽 슬라이드 형식으로 메뉴가 오픈
 2. App bar 자체에서앱의 탐색 및 컨텐츠 전환이 가능한 메뉴 모음을 두는  방식 
---BottomNavigationView : 하단의 메뉴를 구성할 때 이용
 
+--BottomNavigationView : 하단의 메뉴를 구성할 때 이용
+1. activity_main.xml에 BottomNavigationView를 추가하고 위치제약조건을 걸어준다.
+2. res파일에 menu 타입의 android resource directory를 만들어준다.
 
 
