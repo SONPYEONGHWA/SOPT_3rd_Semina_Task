@@ -82,6 +82,7 @@ ex) menu.xml
 
 ## Fragment생성
 **1. 각각의 메뉴 버튼들에 대해 Fragment를 생성하여 준다.**
+
  (HomeFragment, LibraryFragment, MyPageFragment)
 
 
@@ -117,7 +118,7 @@ ex) menu.xml
     }
 
 ## RecyclerView 생성하기
-: 데이터를 한 화면에 스크롤이 가능한 리스트로 표시해주는 위젯
+ **RecyclerView : 데이터를 한 화면에 스크롤이 가능한 리스트로 표시해주는 위젯**
 
 **1. 반복될 뷰를 하나 만든다.**
 
@@ -246,7 +247,8 @@ ex) activity_item_insta.xml
         val img_contents : String )
 
 **4. ViewHolder를 만들어준다.**
-    - 뷰홀더는 데이터를 뷰의 어느 위치에 넣을지를 정의한다.
+    
+   - ViewHolder는 데이터를 뷰의 어느 위치에 넣을지를 정의한다.
 
     package com.example.sopt_2nd_semina_task  
     import android.view.View 
@@ -298,6 +300,7 @@ ex) activity_item_insta.xml
 
 - onBindViewHolder : 객체를 전달받아 뷰홀더 안에 있는 뷰에 데이터를 설정하는 역할을 한다.  
 - getItemCount() : data의 갯수를 반환해준다.
+  
   
 
 
