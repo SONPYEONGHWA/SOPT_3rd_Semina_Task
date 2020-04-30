@@ -1,5 +1,3 @@
-
-
 ## **최종 스크린샷 (ItemDecoration 및 ClipToPadding 적용)**
 
 
@@ -82,8 +80,10 @@ ex) menu.xml
     </selector>
 
 - BottomNavigation에 적용해준다.
-        app:itemIconTint="@color/bottom_selector"  
-        app:itemTextColor="@color/bottom_selector"
+  
+
+      app:itemIconTint="@color/bottom_selector"  
+      app:itemTextColor="@color/bottom_selector"
 
 ## Fragment생성
 **1. 각각의 메뉴 버튼들에 대해 Fragment를 생성하여 준다.**
@@ -373,6 +373,5 @@ ex) activity_item_insta.xml
      rv_home.addItemDecoration(InstaItemDecoration(10))  
        }  
     }
-
 
 
