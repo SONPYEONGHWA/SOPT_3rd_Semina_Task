@@ -1,3 +1,11 @@
+
+
+## **최종 스크린샷 (ItemDecoration 및 ClipToPadding 적용)**
+
+
+<img src = "https://user-images.githubusercontent.com/56873136/80596441-532adc00-8a61-11ea-870a-87543686fa74.jpg" width = 300dp, height = 600dp>
+
+
 ## BottomNavigationView
 안드로이드 앱에서 컨텐츠 전환 및 탐색을 위한 Navigation menu는 여러가지 방식으로 구현할 수 있다.
 
@@ -6,9 +14,6 @@
 **2.  App bar 자체**에서앱의 탐색 및 컨텐츠 전환이 가능한 메뉴 모음을 두는  방식 
 
 **BottomNavigationView : 하단의 메뉴를 구성할 때 이용**
-
-<img src = "https://user-images.githubusercontent.com/56873136/80596441-532adc00-8a61-11ea-870a-87543686fa74.jpg" width = 300dp, height = 500dp>
-
 
 
 
@@ -246,7 +251,8 @@ ex) activity_item_insta.xml
         val img_profile : String,
         val img_contents : String )
 
-**4. ViewHolder를 만들어준다.**
+##  ViewHolder를 만들어준다.
+
     
    - ViewHolder는 데이터를 뷰의 어느 위치에 넣을지를 정의한다.
 
@@ -267,7 +273,11 @@ ex) activity_item_insta.xml
         Glide.with(itemView).load(instaData.img_contents).into(img_contents)  
         }  
     }
-**5.  실질적으로  뷰에 데이터들을 띄워주기 위해서 InstaAdapter를 생성하였다.**
+
+##  InstaAdapter 생성
+**: 실질적으로 데이터들을 뷰에 띄워주기 위한 Adapter**
+
+
 
         package com.example.sopt_2nd_semina_task  
         import android.content.Context  
@@ -300,9 +310,69 @@ ex) activity_item_insta.xml
 
 - onBindViewHolder : 객체를 전달받아 뷰홀더 안에 있는 뷰에 데이터를 설정하는 역할을 한다.  
 - getItemCount() : data의 갯수를 반환해준다.
-  
-  
 
+## RecyclerView에 Adapter 적용하기
+
+    package com.example.sopt_2nd_semina_task  
+    import android.graphics.Canvas  
+    import android.graphics.Color  
+    import android.graphics.Rect  
+    import android.os.Bundle  
+    import androidx.fragment.app.Fragment  
+    import android.view.LayoutInflater  
+    import android.view.View  
+    import android.view.ViewGroup  
+    import androidx.recyclerview.widget.RecyclerView  
+    import kotlinx.android.synthetic.main.fragment_home.*  
+    /**  
+     * A simple [Fragment] subclass. */  
+    
+     * class HomeFragment : Fragment() {  
+  
+    lateinit var instaAdapter: InstaAdapter  
+    val datas = mutableListOf<InstaData>()  
+  
+    override fun onCreateView(  
+        inflater: LayoutInflater, container: ViewGroup?,  savedInstanceState: Bundle?  
+    ): View? {  
+        // Inflate the layout for this fragment  
+        return inflater.inflate(R.layout.fragment_home, container, false)  
+    }  
+  
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {  
+        super.onViewCreated(view, savedInstanceState)  
+        instaAdapter = InstaAdapter(view.context)  
+        rv_home.adapter = instaAdapter   
+        loadDatas()  
+    }   
+    fun loadDatas() {  
+     datas.apply {  
+    add(  
+             InstaData(  
+                 userName = "손흥민",  
+    img_profile ="https://img2.yna.co.kr/photo/yna/YH/2019/08/05/PYH2019080501160034000_P4.jpg",  
+    img_contents = "https://www.uhakbrain.com/wp-content/uploads/2016/03/Edinburgh-%EC%97%90%EB%94%98%EB%B2%84%EB%9F%AC.jpg"  
+    ))  
+  
+         add(  
+             InstaData(  
+                 userName = "SOPT_Android",  
+    img_profile = "https://img2.yna.co.kr/photo/yna/YH/2019/08/05/PYH2019080501160034000_P4.jpg",  
+    img_contents = "https://www.raileurope.co.kr/local/cache-gd2/62/80a9f7b267c495ca08391b8c737442.jpg?1580744021"  
+    ))  
+  
+         add(  
+             InstaData(  
+                 userName = "손평화",  
+    img_profile = "https://img2.yna.co.kr/photo/yna/YH/2019/08/05/PYH2019080501160034000_P4.jpg",  
+    img_contents = "https://www.uhakbrain.com/wp-content/uploads/2016/03/Edinburgh-%EC%97%90%EB%94%98%EB%B2%84%EB%9F%AC.jpg"  
+    ))  
+     }  
+    instaAdapter.datas = datas  
+    instaAdapter.notifyDataSetChanged()  
+     rv_home.addItemDecoration(InstaItemDecoration(10))  
+       }  
+    }
 
 
 
