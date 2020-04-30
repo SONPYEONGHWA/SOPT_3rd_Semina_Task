@@ -119,12 +119,186 @@ ex) menu.xml
 ## RecyclerView 생성하기
 : 데이터를 한 화면에 스크롤이 가능한 리스트로 표시해주는 위젯
 
-1. 반복될 뷰를 하나 만든다.
-2. LayoutManager를 이용하여 데이터들을 배치할 방향을 정해준다.
-3. data class를 생성하여 입력할 데이터의 타입을 정해준다.
+**1. 반복될 뷰를 하나 만든다.**
 
+ex) activity_item_insta.xml
 
+    <androidx.constraintlayout.widget.ConstraintLayout  
+      
+      xmlns:android="http://schemas.android.com/apk/res/android"  
+      
+      xmlns:app="http://schemas.android.com/apk/res-auto"  
+      
+      xmlns:tools="http://schemas.android.com/tools"  
+      
+      android:layout_width="match_parent"  
+      
+      android:layout_height="match_parent">  
+      
+      
+      
+     <androidx.constraintlayout.widget.ConstraintLayout  
+      android:id="@+id/constraintLayout"  
+      
+      android:layout_width="match_parent"  
+      
+      android:layout_height="wrap_content"  
+      
+      android:background="@color/colorPrimary"  
+      
+      android:paddingHorizontal="24dp"  
+      
+      android:paddingVertical="8dp"  
+      
+      app:layout_constraintTop_toTopOf="parent">  
+      
+      
+      
+     <de.hdodenhof.circleimageview.CircleImageView  
+      android:id="@+id/img_profile"  
+      
+      android:layout_width="48dp"  
+      
+      android:layout_height="48dp"  
+      
+      
+      app:layout_constraintStart_toStartOf="parent"  
+      
+      app:layout_constraintTop_toTopOf="parent" />  
+      
+      
+      
+     <TextView  
+      android:id="@+id/tv_username"  
+      
+      android:layout_width="wrap_content"  
+      
+      android:layout_height="wrap_content"  
+      
+      android:text="TextView"  
+      
+      android:textColor="@color/white"  
+      
+      android:textSize="16sp"  
+      
+      android:textStyle="bold"  
+      
+      app:layout_constraintBottom_toBottomOf="@+id/img_profile"  
+      
+      app:layout_constraintStart_toEndOf="@+id/img_profile"  
+      
+      app:layout_constraintTop_toTopOf="@+id/img_profile" />  
+      
+      
+      
+     <ImageView  
+      android:id="@+id/imageView"  
+      
+      android:layout_width="wrap_content"  
+      
+      android:layout_height="wrap_content"  
+      
+      app:layout_constraintBottom_toBottomOf="@+id/tv_username"  
+      
+      app:layout_constraintEnd_toEndOf="parent"  
+      
+      app:layout_constraintTop_toTopOf="@+id/tv_username"  
+      
+      app:srcCompat="@drawable/ic_more" />  
+      
+     </androidx.constraintlayout.widget.ConstraintLayout>  
+      
+      
+     <ImageView  
+      android:id="@+id/img_contents"  
+      
+      android:layout_width="0dp"  
+      
+      android:layout_height="0dp"  
+      
+      android:scaleType="centerCrop"  
+      
+      app:layout_constraintEnd_toEndOf="parent"  
+      
+      app:layout_constraintStart_toStartOf="parent"  
+      
+      app:layout_constraintDimensionRatio="1:1"  
+      
+      app:layout_constraintTop_toBottomOf="@+id/constraintLayout"  
+      
+      app:srcCompat="@drawable/ic_launcher_background" />  
+      
+      
+      
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
+**2.  HomeFragment에 RecyclerView를 만들고 LayoutManager를 이용하여 데이터들을 배치할 방향을 정해준다.**
+
+    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+
+**3. data class를 생성하여 입력할 데이터의 타입을 정해준다.**
+ 
+
+        package com.example.sopt_2nd_semina_task  
+        data class InstaData (  
+        val userName : String, 
+        val img_profile : String,
+        val img_contents : String )
+
+**4. ViewHolder를 만들어준다.**
+    - 뷰홀더는 데이터를 뷰의 어느 위치에 넣을지를 정의한다.
+
+    package com.example.sopt_2nd_semina_task  
+    import android.view.View 
+    import android.widget.ImageView 
+    import android.widget.TextView  
+    import androidx.recyclerview.widget.RecyclerView  
+    import com.bumptech.glide.Glide  
+    class InstaViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {  
+    val tv_username = itemView.findViewById<TextView>(R.id.tv_username)  
+    val img_profile = itemView.findViewById<ImageView>(R.id.img_profile)  
+    val img_contents = itemView.findViewById<ImageView>(R.id.img_contents)  
+  
+    fun bind (instaData : InstaData){  
+        tv_username.text = instaData.userName  
+        Glide.with(itemView).load(instaData.img_profile).into(img_profile)  
+        Glide.with(itemView).load(instaData.img_contents).into(img_contents)  
+        }  
+    }
+**5.  실질적으로  뷰에 데이터들을 띄워주기 위해서 InstaAdapter를 생성하였다.**
+
+        package com.example.sopt_2nd_semina_task  
+        import android.content.Context  
+        import android.text.Layout  
+        import android.view.LayoutInflater  
+        import android.view.ViewGroup  
+        import androidx.recyclerview.widget.RecyclerView  
+        
+        class InstaAdapter (private val context : Context) : RecyclerView.Adapter<InstaViewHolder>() {  
+        
+           var datas = mutableListOf<InstaData>() 
+         
+           override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): InstaViewHolder { 
+         
+           val view = LayoutInflater.from(context).inflate(R.layout.activity_item_insta,parent,false)  
+        
+           return InstaViewHolder(view)  
+                } 
+                
+           override fun getItemCount(): Int {  
+           return datas.size 
+                } 
+                
+           override fun onBindViewHolder(holder: InstaViewHolder, position: Int) {  
+           holder.bind(datas[position]) 
+              }  
+        }
+- onCreateViewHolder :  각 아이템을 위한 XML 레이아웃을 이용해 뷰 객체를 만든 후 뷰홀더에 담아 리턴한다.
+이때 XML 레이아웃을 인플레이션하여 설정할 ViewGroup 객체는 onCreateViewHolder 메소드의 파라미터로 전달된다.
+
+- onBindViewHolder : 객체를 전달받아 뷰홀더 안에 있는 뷰에 데이터를 설정하는 역할을 한다.  
+- getItemCount() : data의 갯수를 반환해준다.
+  
 
 
 
