@@ -7,7 +7,7 @@
 
 **BottomNavigationView : 하단의 메뉴를 구성할 때 이용**
 
-![Screenshot_20200429-211749_SOPT_2nd_Semina_Task](https://user-images.githubusercontent.com/56873136/80596441-532adc00-8a61-11ea-870a-87543686fa74.jpg)
+img src = "![Screenshot_20200429-211749_SOPT_2nd_Semina_Task]<img src = "https://user-images.githubusercontent.com/56873136/80596441-532adc00-8a61-11ea-870a-87543686fa74.jpg" width = 200dp, height = 250dp>
 
 
 
