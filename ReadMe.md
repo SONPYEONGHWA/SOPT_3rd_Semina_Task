@@ -1,3 +1,5 @@
+
+
 ## **최종 스크린샷 (ItemDecoration 및 ClipToPadding 적용)**
 
 
@@ -374,4 +376,31 @@ ex) activity_item_insta.xml
        }  
     }
 
+## RecyclerView의 ItemDecoration
 
+
+- RecyclerView에 구분선을 주기 위해 ItemDecoration을 사용한다.
+
+**1. InstaItemDecoration 클래스를 생성해준다.**
+
+    package com.example.sopt_2nd_semina_task  
+  
+    import android.graphics.Rect  
+    import android.view.View  
+    import androidx.recyclerview.widget.RecyclerView  
+  
+    class InstaItemDecoration( private val divHeight:Int) : RecyclerView.ItemDecoration(){  
+  
+    override fun getItemOffsets(  
+        outRect: Rect,  
+    view: View,  
+    parent: RecyclerView,  
+    state: RecyclerView.State  
+    ) {  
+        super.getItemOffsets(outRect, view, parent, state)  
+        outRect.left = divHeight  
+    outRect.right = divHeight  
+    outRect.top = divHeight  
+    outRect.bottom = divHeight  
+      }   
+    }
