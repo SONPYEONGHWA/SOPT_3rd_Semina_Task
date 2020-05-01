@@ -1,5 +1,6 @@
 
 
+
 ## **최종 스크린샷 (ItemDecoration 및 ClipToPadding 적용)**
 
 
@@ -410,6 +411,6 @@ ex) activity_item_insta.xml
 
 ## ClipToPadding
 
-RecyclerView에서 스크롤을 할 때 뷰들의 구분을 주고 싶은 경우, ClipToPadding의 기본값이 true이기 때문에 padding을 주면 그만큼 스크롤의 영역이 작아져서 곤란하다. ClipToPadding을 false로 바꿔준다면 영역을 유지할 수 있다.
+- RecyclerView에서 스크롤을 할 때 뷰들의 구분을 주고 싶은 경우, ClipToPadding의 기본값이 true이기 때문에 padding을 주면 그만큼 스크롤의 영역이 작아져서 곤란하다. **ClipToPadding을 false로 바꿔준다면 영역을 유지할 수 있다.**
 
-    android:clipToPadding="false"
+      android:clipToPadding="false"
