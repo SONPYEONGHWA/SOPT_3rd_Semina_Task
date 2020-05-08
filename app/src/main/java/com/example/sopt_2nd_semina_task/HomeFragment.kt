@@ -36,11 +36,7 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         instaAdapter = InstaAdapter(view.context)
         rv_home.adapter = instaAdapter
-
-
         rv_home.addItemDecoration(InstaItemDecoration(10))
-
-
         loadDatas()
     }
  fun loadDatas() {
