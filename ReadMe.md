@@ -1,6 +1,5 @@
 
 
-
 ## **최종 스크린샷 (ItemDecoration 및 ClipToPadding 적용)**
 
 
@@ -399,18 +398,26 @@ ex) activity_item_insta.xml
     state: RecyclerView.State  
     ) {  
         super.getItemOffsets(outRect, view, parent, state)  
-        outRect.left = divHeight  
-    outRect.right = divHeight  
-    outRect.top = divHeight  
-    outRect.bottom = divHeight  
+        outRect.bottom = divHeight  
       }   
     }
 **2.  RecyclerView에  ItemDecoration을 적용해준다**
 
     rv_home.addItemDecoration(InstaItemDecoration(10))
 
+**-- ItemDecoration을 적용해준 뒤 실행을 했을 때 스크롤을 내리면 간격이 초기화 되는 오류가 있어 InstaAdapter.kt에서 따로 아이템들의 간격을 조절해주었다.**
+
+    override fun onBindViewHolder(holder: InstaViewHolder, position: Int) {  
+        holder.bind(datas[position])  
+        val layoutParams = holder.itemView.layoutParams  
+      layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT  
+      holder.itemView.requestLayout()  
+    }
+
 ## ClipToPadding
 
 - RecyclerView에서 스크롤을 할 때 뷰들의 구분을 주고 싶은 경우, ClipToPadding의 기본값이 true이기 때문에 padding을 주면 그만큼 스크롤의 영역이 작아져서 곤란하다. **ClipToPadding을 false로 바꿔준다면 영역을 유지할 수 있다.**
 
       android:clipToPadding="false"
+
+
