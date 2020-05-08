@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
         instaAdapter = InstaAdapter(view.context)
         rv_home.adapter = instaAdapter
 
-        rv_home.layoutManager = LinearLayoutManager(view.context,RecyclerView.VERTICAL,false)
+
         rv_home.addItemDecoration(InstaItemDecoration(10))
 
 
