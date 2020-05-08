@@ -3,6 +3,7 @@ package com.example.sopt_2nd_semina_task
 import android.content.Context
 import android.text.Layout
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 
@@ -19,5 +20,8 @@ class InstaAdapter (private val context : Context) : RecyclerView.Adapter<InstaV
 
     override fun onBindViewHolder(holder: InstaViewHolder, position: Int) {
         holder.bind(datas[position])
+        val layoutParams = holder.itemView.layoutParams
+        layoutParams.height = ViewGroup.LayoutParams.WRAP_CONTENT
+        holder.itemView.requestLayout()
     }
 }

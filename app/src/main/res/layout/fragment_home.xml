@@ -12,7 +12,8 @@
         android:layout_height="wrap_content"
         app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
         android:orientation="vertical"
-        tools:listitem="@layout/activity_item_insta">
+        tools:listitem="@layout/activity_item_insta"
+        android:clipToPadding="false">
 
 
 
