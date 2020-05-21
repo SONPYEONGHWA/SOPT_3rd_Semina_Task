@@ -1,11 +1,12 @@
-package com.example.sopt_2nd_semina_task
+package com.example.sopt_2nd_semina_task.adapter
 
 import android.content.Context
-import android.text.Layout
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.sopt_2nd_semina_task.data.InstaData
+import com.example.sopt_2nd_semina_task.InstaViewHolder
+import com.example.sopt_2nd_semina_task.R
 
 class InstaAdapter (private val context : Context) : RecyclerView.Adapter<InstaViewHolder>() {
     var datas = mutableListOf<InstaData>()

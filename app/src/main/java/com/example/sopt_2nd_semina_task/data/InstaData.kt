@@ -1,4 +1,4 @@
-package com.example.sopt_2nd_semina_task
+package com.example.sopt_2nd_semina_task.data
 
 data class InstaData (
     val userName : String,
