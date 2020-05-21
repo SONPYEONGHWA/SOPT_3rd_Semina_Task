@@ -6,12 +6,14 @@ import com.example.sopt_2nd_semina_task.data.ResponseLogin
 import com.example.sopt_2nd_semina_task.data.ResponseSignup
 import retrofit2.Call
 import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.POST
 
 interface RequestInterface {
     @POST("/user/siginin")
-    fun requstLogin(@Body body : RequestLogin ) : Call<ResponseLogin>
+    fun requestLogin( @Body body : RequestLogin ) : Call<ResponseLogin>
 
     @POST("/user/signup")
-    fun requestSignup(@Body body : RequestSignup) : Call<ResponseSignup>
+    fun requestSignup( @Body body : RequestSignup) : Call<ResponseSignup>
 }
