@@ -20,15 +20,15 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class Insta_Login_Activity : AppCompatActivity() {
+
+    val REQUEST_CODE_MAIN = 1000
     val requestToServer = RequestToServer
-    val REQUEST_CODE = 500
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insta__login)
 
         init()
-
     }
 
     fun init() {
@@ -37,40 +37,39 @@ class Insta_Login_Activity : AppCompatActivity() {
 
         et_id_login.setText(intent.getStringExtra("id")?.toString())
         et_password_login.setText(intent.getStringExtra("pw")?.toString())
-        setResult(Activity.RESULT_OK, intent)
+        setResult(Activity.RESULT_OK,intent)
 
         autoLogin()
 
-        btn_login.setOnClickListener() {
+        btn_login.setOnClickListener {
 
-            if (et_id_login.text.isNullOrBlank() || et_password_login.text.isNullOrBlank()) {
-                Toast.makeText(this, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+            if(et_id_login.text.isNullOrBlank() || et_password_login.text.isNullOrBlank()) {
+                Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
             } else {
                 requestToServer.service.requestLogin(
-                    RequestLogin(
-                        id = et_id_login.text.toString(),
-                        password = et_password_login.text.toString()
-                    )
-                ).enqueue(object : Callback<ResponseLogin> {
+                    RequestLogin(id = et_id_login.text.toString(),
+                        password = et_id_login.text.toString())
+                ).enqueue(object : retrofit2.Callback<ResponseLogin>
+                {
                     override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
-                        Log.d("로그인 통신실패", "${t}")
-                    }
+                        Log.d("로그인 통신실패", "${t}") }
 
                     override fun onResponse(
                         call: Call<ResponseLogin>,
                         response: Response<ResponseLogin>
-                    ) {
-                        if (response.isSuccessful) {
-                            if (response.body()!!.success) {
+                    ) { if(response.isSuccessful) {
+                            if(response.body()!!.success)
+                            {   Log.d("로그인 성공", "id : ${et_id_login.text.toString()}, pw : ${et_password_login.text.toString()}")
+                                Toast.makeText(this@Insta_Login_Activity, "로그인 성공", Toast.LENGTH_SHORT).show()
                                 editor.putString("id",et_id_login.text.toString())
-                                editor.putString("pw",et_password_login.text.toString())
+                                editor.putString("pw",et_id_login.text.toString())
                                 editor.commit()
 
                                 val intent = Intent(this@Insta_Login_Activity, MainActivity::class.java)
-                                startActivityForResult(intent,REQUEST_CODE)
-                                finish()
+                                startActivityForResult(intent,REQUEST_CODE_MAIN)
+
                             } else {
-                                Toast.makeText(this@Insta_Login_Activity, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this@Insta_Login_Activity, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -78,27 +77,22 @@ class Insta_Login_Activity : AppCompatActivity() {
             }
         }
 
-        tv_gotosignup.setOnClickListener() {
-            val intent = Intent(this, Insta_SignUp_Activity::class.java)
+        tv_gotosignup.setOnClickListener {
+            val intent = Intent(applicationContext, Insta_SignUp_Activity::class.java)
             startActivity(intent)
         }
     }
 
-    fun autoLogin()
-
-    {
-
+    fun autoLogin() {
         var pref : SharedPreferences = getSharedPreferences("pref",Context.MODE_PRIVATE)
-
-        if(!(pref.getString("id",null).isNullOrBlank() || pref.getString("pw",null).isNullOrBlank()))
-
-        {
+        if(!(pref.getString("id",null).isNullOrBlank() || pref.getString("pw",null).isNullOrBlank())) {
             val id = pref.getString("id",null).toString()
-            if(!id.isNullOrBlank()){
+
+            if(!id.isNullOrBlank()) {
                 Log.d("자동로그인 id ", "${id}")
                 Toast.makeText(this, "${id}님 자동로그인 되었습니다.", Toast.LENGTH_SHORT).show();
                 val intent = Intent(this, MainActivity::class.java)
-                startActivityForResult(intent,REQUEST_CODE)
+                startActivityForResult(intent,REQUEST_CODE_MAIN)
             }
         }
     }
@@ -106,12 +100,10 @@ class Insta_Login_Activity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
-        if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == REQUEST_CODE) {
+        if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MAIN) {
                 Log.d("로그인", "종료")
                 finish()
-            }
         }
-
     }
 }
+

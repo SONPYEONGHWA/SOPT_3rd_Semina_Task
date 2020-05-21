@@ -5,5 +5,6 @@ data class RequestSignup(
     val password : String,
     val name : String,
     val email : String,
-    val phonenumber : String
+    val phone : String
+
 )

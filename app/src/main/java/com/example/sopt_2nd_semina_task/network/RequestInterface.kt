@@ -10,10 +10,13 @@ import retrofit2.http.Header
 import retrofit2.http.Headers
 import retrofit2.http.POST
 
+
 interface RequestInterface {
-    @POST("/user/siginin")
-    fun requestLogin( @Body body : RequestLogin ) : Call<ResponseLogin>
+
+    @POST("/user/signin")
+    fun requestLogin(@Body body: RequestLogin): Call<ResponseLogin>
 
     @POST("/user/signup")
-    fun requestSignup( @Body body : RequestSignup) : Call<ResponseSignup>
+    fun requestSignup(@Body body: RequestSignup): Call<ResponseSignup>
+
 }
