@@ -96,6 +96,7 @@
 ## 서버와 통신!!
 
 **Call<Type>** --  비동기적으로 Type을 받아오는 객체
+    
 **Callback<Type>** -- Type 객체를 받아왔을 때, 프로그래머가 할 행동
 
  **-- Insta_SignUp_Activity.kt**
