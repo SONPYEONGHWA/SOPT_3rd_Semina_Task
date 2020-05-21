@@ -59,8 +59,7 @@ class Insta_Login_Activity : AppCompatActivity() {
                         response: Response<ResponseLogin>
                     ) { if(response.isSuccessful) {
                             if(response.body()!!.success)
-                            {   Log.d("로그인 성공", "id : ${et_id_login.text.toString()}, pw : ${et_password_login.text.toString()}")
-                                Toast.makeText(this@Insta_Login_Activity, "로그인 성공", Toast.LENGTH_SHORT).show()
+                            {   Toast.makeText(this@Insta_Login_Activity, "로그인 성공", Toast.LENGTH_SHORT).show()
                                 editor.putString("id",et_id_login.text.toString())
                                 editor.putString("pw",et_id_login.text.toString())
                                 editor.commit()
@@ -69,7 +68,7 @@ class Insta_Login_Activity : AppCompatActivity() {
                                 startActivityForResult(intent,REQUEST_CODE_MAIN)
 
                             } else {
-                                Toast.makeText(this@Insta_Login_Activity, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(this@Insta_Login_Activity, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();
                             }
                         }
                     }
@@ -78,7 +77,7 @@ class Insta_Login_Activity : AppCompatActivity() {
         }
 
         tv_gotosignup.setOnClickListener {
-            val intent = Intent(applicationContext, Insta_SignUp_Activity::class.java)
+            val intent = Intent(this, Insta_SignUp_Activity::class.java)
             startActivity(intent)
         }
     }
@@ -89,8 +88,7 @@ class Insta_Login_Activity : AppCompatActivity() {
             val id = pref.getString("id",null).toString()
 
             if(!id.isNullOrBlank()) {
-                Log.d("자동로그인 id ", "${id}")
-                Toast.makeText(this, "${id}님 자동로그인 되었습니다.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "자동로그인", Toast.LENGTH_SHORT).show();
                 val intent = Intent(this, MainActivity::class.java)
                 startActivityForResult(intent,REQUEST_CODE_MAIN)
             }
@@ -101,7 +99,6 @@ class Insta_Login_Activity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (resultCode == Activity.RESULT_OK && requestCode == REQUEST_CODE_MAIN) {
-                Log.d("로그인", "종료")
                 finish()
         }
     }

@@ -45,6 +45,7 @@ class Insta_SignUp_Activity : AppCompatActivity() {
     }
 
     fun request() {
+
         pref = getSharedPreferences("pref", Context.MODE_PRIVATE)
         editor = pref.edit()
 
@@ -71,7 +72,6 @@ class Insta_SignUp_Activity : AppCompatActivity() {
                         ) {
                             if (response.isSuccessful) {
                                 if (response.body()!!.success) {
-                                    Log.d("회원가입 성공", "id : ${et_id_signup.text}, pw : ${et_password_signup.text}")
                                     Toast.makeText(this@Insta_SignUp_Activity, "회원가입이 완료되었습니다.", Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this@Insta_SignUp_Activity, Insta_Login_Activity::class.java)
 
