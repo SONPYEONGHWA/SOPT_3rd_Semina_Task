@@ -28,10 +28,11 @@ class Insta_Login_Activity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_insta__login)
 
-        init()
+        login()
     }
 
-    fun init() {
+    fun login() {
+
         var pref : SharedPreferences = getSharedPreferences("pref",Context.MODE_PRIVATE)
         var editor : SharedPreferences.Editor = pref.edit()
 
