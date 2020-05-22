@@ -25,14 +25,14 @@
 
 **로그인과 회원가입 API문서를 참고하여  Request / Response 객체를 설계해준다.**
 
-==**RequestLogin**==
+**RequestLogin**
 
     data class RequestLogin(  
     val id : String,  
     val password : String  
     )
 
-==**ResponseLogin**==
+**ResponseLogin**
 
     data class ResponseLogin(  
     val status : Int,  
@@ -48,7 +48,7 @@
 
 **- @SerializedName을 사용하여  서버에서 지정해준 변수가 아닌 원하는 변수명으로 변경하여 사용가능하다.**
 
-==**RequestSignup**==
+**RequestSignup**
 
     data class RequestSignup(  
      val id : String,  
@@ -68,7 +68,7 @@
 
 ## Retrofit 인터페이스 만들기
 
-==**RequestInterface**==
+**RequestInterface**
   
     interface RequestInterface {  
       
@@ -82,7 +82,7 @@
 
 ## 인터페이스의 실제 구현체 만들기
 
-==**RequestToServer**==
+**RequestToServer**
 
     object RequestToServer{  
       var retrofit = Retrofit.Builder()
@@ -100,7 +100,7 @@
 
 **Callback<Type>** -- Type 객체를 받아왔을 때, 프로그래머가 할 행동
 
- ==**-- Insta_SignUp_Activity.kt**==
+ **-- Insta_SignUp_Activity.kt**
 
     val requestToServer = RequestToServer  
   
