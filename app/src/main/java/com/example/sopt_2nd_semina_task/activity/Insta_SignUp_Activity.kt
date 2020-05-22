@@ -19,7 +19,7 @@ import retrofit2.Response
 
 class Insta_SignUp_Activity : AppCompatActivity() {
 
-    val REQUEST_CODE_LOGIN =100
+    val REQUEST_CODE_LOGIN = 100
     lateinit var pref : SharedPreferences
     lateinit var editor :SharedPreferences.Editor
 

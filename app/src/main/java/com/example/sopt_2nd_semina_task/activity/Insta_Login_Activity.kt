@@ -48,10 +48,11 @@ class Insta_Login_Activity : AppCompatActivity() {
                 Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();
             } else {
                 requestToServer.service.requestLogin(
-                    RequestLogin(id = et_id_login.text.toString(),
-                        password = et_id_login.text.toString())
-                ).enqueue(object : retrofit2.Callback<ResponseLogin>
-                {
+                    RequestLogin
+                        (id = et_id_login.text.toString(),
+                         password = et_password_login.text.toString())
+                ).enqueue(object : retrofit2.Callback<ResponseLogin> {
+
                     override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {
                         Log.d("로그인 통신실패", "${t}") }
 
