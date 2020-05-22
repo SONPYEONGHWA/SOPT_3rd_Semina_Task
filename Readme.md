@@ -48,6 +48,7 @@
 
 **- @SerializedName을 사용하여  서버에서 지정해준 변수가 아닌 원하는 변수명으로 변경하여 사용가능하다.**
 
+
 **RequestSignup**
 
     data class RequestSignup(  
@@ -100,7 +101,7 @@
 
 **Callback<Type>** -- Type 객체를 받아왔을 때, 프로그래머가 할 행동
 
- **-- Insta_SignUp_Activity.kt**
+ **- Insta_SignUp_Activity.kt**
 
     val requestToServer = RequestToServer  
   
@@ -146,7 +147,7 @@
         )  
     }
 
- ==**-- Insta_Login_Activity.kt**==
+ **- Insta_Login_Activity.kt**
 
     class Insta_Login_Activity : AppCompatActivity() {  
   
