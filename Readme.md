@@ -18,7 +18,7 @@
      //인터넷을 사용을 허용해준다.
        <uses-permission android:name="android.permission.INTERNET" />
 
-     //모든 http 사이트에 대한 접근을 허용해 주기 위해 true true로 변경해준다.
+     //모든 http 사이트에 대한 접근을 허용해 주기 위해 true로 변경해준다.
         android:usesCleartextTraffic="true"
 
 ## Request/Response 객체 설계
