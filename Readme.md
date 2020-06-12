@@ -194,7 +194,7 @@
     }
 
 
-## **자동로그인**
+## **:open_file_folder: 자동로그인**
 
     var pref : SharedPreferences = getSharedPreferences("pref",Context.MODE_PRIVATE)  
     var editor : SharedPreferences.Editor = pref.edit()
