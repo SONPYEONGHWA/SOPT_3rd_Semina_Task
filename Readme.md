@@ -24,7 +24,7 @@
      //모든 http 사이트에 대한 접근을 허용해 주기 위해 true로 변경해준다.
         android:usesCleartextTraffic="true"
 
-## Request/Response 객체 설계
+## :triangular_ruler: Request/Response 객체 설계
 
 **로그인과 회원가입 API문서를 참고하여  Request / Response 객체를 설계해준다.**
 
