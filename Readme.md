@@ -1,10 +1,13 @@
-## 최종 결과화면!!!
+**
+
+# 최종 결과화면 :iphone:
+
+**
 
 
-<img src ="https://user-images.githubusercontent.com/56873136/82593914-37d56b80-9bde-11ea-8a05-b0815ed6fd15.jpg" width="230" height="430">                         <img src ="https://user-images.githubusercontent.com/56873136/82592885-8aae2380-9bdc-11ea-810f-282a11285e30.jpg" width="230" height="430">
-<img src ="https://user-images.githubusercontent.com/56873136/82634921-fecae480-9c39-11ea-9945-47ea85785ace.jpg" width="230" height="430"> <img src ="https://user-images.githubusercontent.com/56873136/82635061-51a49c00-9c3a-11ea-9b85-5b60adc6948b.jpg" width="230" height="430"> <img src ="https://user-images.githubusercontent.com/56873136/82635210-ac3df800-9c3a-11ea-906b-c811527a0bab.jpg" width="230" height="430"> <img src ="https://user-images.githubusercontent.com/56873136/82635132-8284d100-9c3a-11ea-9c42-c4b5c039864e.jpg" width="230" height="430">
+<img src ="https://user-images.githubusercontent.com/56873136/82593914-37d56b80-9bde-11ea-8a05-b0815ed6fd15.jpg" width="230" height="430">                         <img src ="https://user-images.githubusercontent.com/56873136/82592885-8aae2380-9bdc-11ea-810f-282a11285e30.jpg" width="230" height="430"><img src ="https://user-images.githubusercontent.com/56873136/82634921-fecae480-9c39-11ea-9945-47ea85785ace.jpg" width="230" height="430"> <img src ="https://user-images.githubusercontent.com/56873136/82635061-51a49c00-9c3a-11ea-9b85-5b60adc6948b.jpg" width="230" height="430"> <img src ="https://user-images.githubusercontent.com/56873136/82635210-ac3df800-9c3a-11ea-906b-c811527a0bab.jpg" width="230" height="430"> <img src ="https://user-images.githubusercontent.com/56873136/82635132-8284d100-9c3a-11ea-9c42-c4b5c039864e.jpg" width="230" height="430">
 
-## 라이브러리 추가하기
+## :cd: 라이브러리 추가하기
 
 **build.gradle**
 
@@ -67,7 +70,11 @@
     val message : String  
     )
 
-## Retrofit 인터페이스 만들기
+**
+
+## :triangular_flag_on_post: Retrofit 인터페이스 만들기
+
+** 
 
 **RequestInterface**
   
@@ -81,7 +88,7 @@
     }
 
 
-## 인터페이스의 실제 구현체 만들기
+## :satellite: 인터페이스의 실제 구현체 만들기
 
 **RequestToServer**
 
@@ -94,7 +101,7 @@
        var service : RequestInterfaceretrofit.create(RequestInterface::class.java)  
     }
 
-## 서버와 통신!!
+## :signal_strength: 서버와 통신!!
 
 
 **Call<Type>** --  비동기적으로 Type을 받아오는 객체
@@ -150,60 +157,59 @@
 
  **- Insta_Login_Activity.kt**
 
-    class Insta_Login_Activity : AppCompatActivity() {  
-  
-    val REQUEST_CODE_MAIN = 1000  
-    val requestToServer = RequestToServer  
-    var pref : SharedPreferences = getSharedPreferences("pref",Context.MODE_PRIVATE)  
-    var editor : SharedPreferences.Editor = pref.edit()  
-  
-    override fun onCreate(savedInstanceState: Bundle?) {  
-        super.onCreate(savedInstanceState)  
-        setContentView(R.layout.activity_insta__login)  
-  
-        et_id_login.setText(intent.getStringExtra("id")?.toString())  
-        et_password_login.setText(intent.getStringExtra("pw")?.toString())  
-        setResult(Activity.RESULT_OK,intent)  
-  
-        autoLogin()  
-  
-        btn_login.setOnClickListener {  
+    btn_login.setOnClickListener {  
   
     if(et_id_login.text.isNullOrBlank() || et_password_login.text.isNullOrBlank()) {  
-                Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();  
-    } else { requestToServer.service.requestLogin(  
-             RequestLogin(
-                  id = et_id_login.text.toString(),  
-                  password = et_password_login.text.toString())  
-             ).enqueue(object : retrofit2.Callback<ResponseLogin> {  
+        Toast.makeText(this, "아이디와 비밀번호를 확인하세요", Toast.LENGTH_SHORT).show();  
+    } else {  
+        requestToServer.service.requestLogin(  
+            RequestLogin  
+                (id = et_id_login.text.toString(),  
+    password = et_password_login.text.toString())  
+        ).enqueue(object : retrofit2.Callback<ResponseLogin> {  
   
-                    override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {  
-                        Log.d("로그인 통신실패", "${t}") }  
+            override fun onFailure(call: Call<ResponseLogin>, t: Throwable) {  
+                Log.d("로그인 통신실패", "${t}") }  
   
-                    override fun onResponse(  
-                        call: Call<ResponseLogin>,  
+            override fun onResponse(  
+                call: Call<ResponseLogin>,  
     response: Response<ResponseLogin>  
-                    ){ if(response.isSuccessful) {  
-                        if(response.body()!!.success){   
-                            Toast.makeText(this@Insta_Login_Activity, "로그인 성공", Toast.LENGTH_SHORT).show()  
-                            editor.putString("id",et_id_login.text.toString())  
-                            editor.putString("pw",et_password_login.text.toString())  
-                            editor.commit()  
+            ) { if(response.isSuccessful) {  
+                if(response.body()!!.success)  
+                {   Toast.makeText(this@Insta_Login_Activity, "로그인 성공", Toast.LENGTH_SHORT).show()  
+                    editor.putString("id",et_id_login.text.toString())  
+                    editor.putString("pw",et_password_login.text.toString())  
+                    editor.commit()  
   
-                            val intent = Intent(this@Insta_Login_Activity, MainActivity::class.java)  
-                            startActivityForResult(intent,REQUEST_CODE_MAIN)  
+                    val intent = Intent(this@Insta_Login_Activity, MainActivity::class.java)  
+                    startActivityForResult(intent,REQUEST_CODE_MAIN)  
   
-                        } else {  
-                                Toast.makeText(this@Insta_Login_Activity, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();  
-                       }  
-                     }  
-                   }  
-                })  
+                } else {  
+                    Toast.makeText(this@Insta_Login_Activity, "아이디와 비밀번호를 확인해주세요", Toast.LENGTH_SHORT).show();  
+               }  
+             }  
             }  
-        }  
-  
-    tv_gotosignup.setOnClickListener {  
-    val intent = Intent(this, Insta_SignUp_Activity::class.java)  
-            startActivity(intent)  
-        }  
+         })  
+      }  
     }
+
+
+## **자동로그인**
+
+    var pref : SharedPreferences = getSharedPreferences("pref",Context.MODE_PRIVATE)  
+    var editor : SharedPreferences.Editor = pref.edit()
+    editor.putString("id",et_id_login.text.toString())  
+    editor.putString("pw",et_password_login.text.toString())  
+    editor.commit()
+
+**위와 같은 방식으로 SharedPreferences 인스턴스에 값을 저장해준다.**
+
+    if(!(pref.getString("id",null).isNullOrBlank() || pref.getString("pw",null).isNullOrBlank())) {  
+        val id = pref.getString("id",null).toString()  
+      
+        if(!id.isNullOrBlank()) {  
+            Toast.makeText(this, "자동로그인", Toast.LENGTH_SHORT).show();  
+     val intent = Intent(this, MainActivity::class.java)  
+            startActivityForResult(intent,REQUEST_CODE_MAIN)  
+    }
+**앱을 다시 실행했을 때 pref에 저장해둔 id값과 pw값이 존재하면 MainActivity가 실행되도록하였다.**
